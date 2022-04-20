@@ -9,11 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
+    const defaultArray = array("Code" => "Finish up this todo app");
+
     #[Route('/', name: 'homePage')]
     public function index(SessionInterface $session): Response
     {
+        $session->start();
+        if($session->get("todoArr") == null){
+            $session->set("todoArr", self::defaultArray);
+        }
+        
         return $this->render('home_page/index.html.twig', [
-            'controller_name' => 'HomePageController',
+            'todoList' => $session->get("todoArr"),
         ]);
     }
 }

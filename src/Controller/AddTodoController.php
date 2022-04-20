@@ -25,6 +25,11 @@ class AddTodoController extends AbstractController
         $oldToDo[$todoName] = $todoValue;
         $session->set("todoArr", $oldToDo);
 
+        $this->addFlash(
+           'notificationMsg',
+           'Todo added successfully!'
+        );
+
         return $this->redirectToRoute('homePage');
     }
 }

@@ -6,14 +6,6 @@
     <link rel='stylesheet' href={{ asset('css/home.css') }} />
 {% endblock %}
 
-{% block javascripts %}
-    <script type='text/javascript'>
-        function onDelClick(code){
-            document.location.href = "/remove/" + btoa(code);
-        }
-    </script>
-{% endblock %}
-
 {% block body %}
 <div class="body-wrapper">
     <h1>Welcome to your ToDo App ✅</h1>

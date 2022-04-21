@@ -15,7 +15,7 @@ class HomePageController extends AbstractController
     public function index(SessionInterface $session): Response
     {
         $session->start();
-        if($session->get("todoArr") == null){
+        if($session->get("todoArr") === null){ // Strict comparison to allow an empty list
             $session->set("todoArr", self::defaultArray);
         }
         

@@ -6,12 +6,26 @@
     {% include "home_page/styles.html" %}
 {% endblock %}
 
+{% block javascripts %}
+    <script type='text/javascript'>
+        function onDelClick(code){
+            document.location.href = "/remove/" + btoa(code);
+        }
+    </script>
+{% endblock %}
+
 {% block body %}
 <div class="body-wrapper">
     <h1>Welcome to your ToDo App ✅</h1>
 
     {% for message in app.flashes('notificationMsg') %}
         <div class="notification">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('notificationMsgErr') %}
+        <div class="notification error">
             {{ message }}
         </div>
     {% endfor %}
@@ -49,7 +63,7 @@
                             </div>
 
                             <!-- Delete icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" 
+                             <svg onclick="{{'onDelClick(\'' ~ key ~ '\')' }}" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" 
                                 width="30" height="30"
                                 viewBox="0 0 30 30"
                                 style=" fill:#000000;">    
